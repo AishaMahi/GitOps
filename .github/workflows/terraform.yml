@@ -35,9 +35,13 @@ jobs:
 
             - name: Setup Terraform with specified version on the runner
               uses: hashicorp/setup-terraform@v3
-            #   with:
-                # terraform_version: 1.6.3
+              with:
+                 terraform_version: 1.6.3
+                 terraform_wrapper: false
 
+            - name: Verify Terraform version
+              run: terraform version
+              
             - name: Terraform init
               id: init
               run: terraform init -backend-config="bucket=$BUCKET_TF_STATE"
